@@ -1185,7 +1185,7 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-var interval = 3000;
+var interval = 2000;
 
 
 rl.question('How many entries?  ', (answer1) => {
@@ -1212,7 +1212,7 @@ rl.question('How many entries?  ', (answer1) => {
                                 var time = new Date().toISOString()
                                 time = time.replace(/T/, ' ')      // replace T with a space
                                 time = time.replace(/\..+/, '')     // delete the dot and everything after
-                                console.log(time + ":  Task" + a + ":  Registered " + email);
+                                console.log(time + ":  Task" + a + ":  Registered " + firstName + " " + LastName + "   Email: " + email);
                             }
                         });
                     });

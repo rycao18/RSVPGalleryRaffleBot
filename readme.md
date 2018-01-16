@@ -1,9 +1,11 @@
-#RSVPGallery Raffle Bot
+# RSVPGallery Raffle Bot
 
 ---------------------------
-##NodeJS Version
+## NodeJS Version
 
-###TO Install
+* Works for about 60-80% of the number you put in
+
+### TO Install
 1. Download the entire repository as a .zip or clone it
 2. If you've downloaded as a zip, extract it to somewhere (skip if you cloned the repo)
 3. Navigate to the unzipped folder (or the folder if you cloned it)

@@ -1174,22 +1174,52 @@ headers = {
 
 baseurl = 'https://rsvpgallery.us1.list-manage.com/subscribe/post-json?u=3c5152418ea66cfe94686365b&id=1e7263dae2&c=jQuery32105118816531413464_1516058119053'
 
-for (var a = 0; a < 3; a++) {
-    var firstName = firstnames[(Math.random() * firstnames.length) - 1];
-    var lastName = lastnames[(Math.random() * lastnames.length) - 1];
-    var email = firstName;
-    for (var b = 0; b < 3; b++) {
-        email += alphanum[Math.random() * 35];
-    }
-    email += "%40rycao.me"
-    request({
-        method: "GET",
-        url: baseurl + "&FULLNAME=" + firstName + "%20" + lastName + "&EMAIL=" + email + "&SHOESIZE=11",
-        'headers': headers
-    }, function(err, response, body) {
-        if (err) console.error(err);
-        else {
-            console.log(response);
-        }
-    });
-};
+function getRandomNum(range, callback) {
+    return callback(Math.floor(Math.random() * range) - 1);
+}
+
+const readline = require('readline');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+var interval = 800;
+
+
+rl.question('How many entries?  ', (answer1) => {
+    rl.question('What is your catchall (WITHOUT THE @ SIGN)   ', (answer2) => {
+        var catchall = answer2;
+        for (var a = 0; a < parseInt(answer1); a++) {
+            setTimeout(function(a) {
+                getRandomNum(firstnames.length, function(response) {
+                    var firstName = firstnames[response];
+                    getRandomNum(lastnames.length, function(response2) {
+                        var lastName = lastnames[response2];
+                        var email = firstName;
+                        for (var b = 0; b < 3; b++) {
+                            email += alphanum[Math.floor(Math.random() * 35)];
+                        }
+                        email += "@" + catchall;
+                        request({
+                            method: "GET",
+                            url: baseurl + "&FULLNAME=" + firstName + "%20" + lastName + "&EMAIL=" + email + "&SHOESIZE=11",
+                            'headers': headers
+                        }, function(err, response, body) {
+                            if (err) console.error(err);
+                            else {
+                                var time = new Date().toISOString()
+                                time = time.replace(/T/, ' ')      // replace T with a space
+                                time = time.replace(/\..+/, '')     // delete the dot and everything after
+                                console.log(time + ":  Task" + a + ":  Registered " + email);
+                            }
+                        });
+                    });
+                });
+            }, interval * a, a);
+        };
+        rl.close();
+    })
+});
+

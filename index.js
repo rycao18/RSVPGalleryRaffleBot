@@ -11077,8 +11077,8 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-var interval = 2000;
 
+var interval = 2000;
 
 rl.question('How many entries?  ', (answer1) => {
     rl.question('What is your catchall (WITHOUT THE @ SIGN)   ', (answer2) => {
@@ -11090,7 +11090,7 @@ rl.question('How many entries?  ', (answer1) => {
                     getRandomNum(lastnames.length, function(response2) {
                         var lastName = lastnames[response2];
                         var email = firstName;
-                        for (var b = 0; b < 3; b++) {
+                        for (var b = 0; b < 6; b++) {
                             email += alphanum[Math.floor(Math.random() * 35)];
                         }
                         email += "@" + catchall;

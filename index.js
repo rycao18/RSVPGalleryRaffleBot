@@ -1185,7 +1185,7 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-var interval = 1000;
+var interval = 3000;
 
 
 rl.question('How many entries?  ', (answer1) => {

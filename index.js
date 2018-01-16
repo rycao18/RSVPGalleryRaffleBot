@@ -1,14 +1,3 @@
-from selenium import webdriver
-from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver import ActionChains
-from selenium.webdriver.common.keys import Keys
-import time
-from random import *
-from datetime import datetime
-
-alphanum = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-                't', 'u', 'v', 'w', 'x', 'y', 'z', "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-nums = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 firstnames = ["John", "Mary", "Jing", "Richard", "Jack", "Keegan", "Claudia", "Joe", "Joseph", "Kim",
     "Jonathan", "Elizabeth", "Paul", "Rachel", "Natalie", "Kamden", "Jacob", "Victor", "Kirsten",
     "Kristen", "Helen", "Jong", "Mark", "Jon", "Alyssa", "Jessica", "Jessie", "Nick", "Zach",
@@ -1166,155 +1155,41 @@ lastnames = ["Smith", "Cao", "Walter", "Conte", "Platt", "Parato", "Wang",
   'Young',
   'Zamora',
   'Zimmerman']
+const alphanum = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+                  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
-numtasks = input ("How many entries do you want to run? ")
+const request = require('request');
 
-for x in range(0, int(numtasks)):
-    randFirst1 = ""
-    randLast1 = ""
-    randName11 = ""
-    email1 = ""
-    randFirst2 = ""
-    randLast2 = ""
-    randName22 = ""
-    email2 = ""
-    randFirst3 = ""
-    randLast3 = ""
-    randName13 = ""
-    email3 = ""
-    randFirst4 = ""
-    randLast4 = ""
-    randName14 = ""
-    email4 = ""
-    
-    randFirst1 = firstnames[randint(0, len(firstnames) - 1)]
-    randLast1 = lastnames[randint(0, len(lastnames) - 1)]
-    randName1 = randFirst1 + " " + randLast1
-    randFirst2 = firstnames[randint(0, len(firstnames) - 1)]
-    randLast2 = lastnames[randint(0, len(lastnames) - 1)]
-    randName2 = randFirst2 + " " + randLast2
-    randFirst3 = firstnames[randint(0, len(firstnames) - 1)]
-    randLast3 = lastnames[randint(0, len(lastnames) - 1)]
-    randName3 = randFirst3 + " " + randLast3
-    randFirst4 = firstnames[randint(0, len(firstnames) - 1)]
-    randLast4 = lastnames[randint(0, len(lastnames) - 1)]
-    randName4 = randFirst4 + " " + randLast4
-    email1 = randFirst1
-    email2 = randFirst2
-    email3 = randFirst3
-    email4 = randFirst4
-    
-    for x in range(0, 3):
-        email1 += alphanum[randint(0, 35)]
-        email2 += alphanum[randint(0, 35)]
-        email3 += alphanum[randint(0, 35)]
-        email4 += alphanum[randint(0, 35)]
-    email1 += "@rycao.me"
-    email2 += "@rycao.me"
-    email3 += "@rycao.me"
-    email4 += "@rycao.me"
-    
-    driver1 = webdriver.Chrome()
-    driver1.get('https://rsvpgallery.com/pages/raffle')
-    driver2 = webdriver.Chrome()
-    driver2.get('https://rsvpgallery.com/pages/raffle')
-    driver3 = webdriver.Chrome()
-    driver3.get('https://rsvpgallery.com/pages/raffle')
-    driver4 = webdriver.Chrome()
-    driver4.get('https://rsvpgallery.com/pages/raffle')
-    time.sleep(2)
-    
-    enterbtn1 = driver1.find_element_by_xpath(
-        '//*[@id="content"]/div/div[4]/div/div[2]/div[1]/div')
-    enterbtn1.click()
-    enterbtn2 = driver2.find_element_by_xpath(
-        '//*[@id="content"]/div/div[4]/div/div[2]/div[1]/div')
-    enterbtn2.click()
-    enterbtn3 = driver3.find_element_by_xpath(
-        '//*[@id="content"]/div/div[4]/div/div[2]/div[1]/div')
-    enterbtn3.click()
-    enterbtn4 = driver4.find_element_by_xpath(
-        '//*[@id="content"]/div/div[4]/div/div[2]/div[1]/div')
-    enterbtn4.click()
-    time.sleep(.5)
+headers = {
+    'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+    'Accept-Encoding':'gzip, deflate, br',
+    'Accept-Language':'en-US,en;q=0.9',
+    'Cache-Control':'max-age=0',
+    'Connection':'keep-alive',
+    'Cookie':'_AVESTA_ENVIRONMENT=prod',
+    'Host':'rsvpgallery.us1.list-manage.com',
+    'Upgrade-Insecure-Requests':'1',
+    'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'
+}
 
-    nameentry1 = driver1.find_element_by_xpath(
-        '//*[@id="raffle_fullname"]')
-    nameentry1.send_keys(randName1)
-    emailentry1 = driver1.find_element_by_xpath(
-        '//*[@id="raffle_email"]')
-    emailentry1.send_keys(email1)
-    sizeentry1 = driver1.find_element_by_xpath(
-        '//*[@id="raffle_form"]/div/div[3]')
-    sizeentry1.click()
-    size121 = driver1.find_element_by_xpath(
-        '//*[@id="raffle_form"]/div/div[3]/ul/li[8]')
-    size121.click()
-    time.sleep(.5)
-    submitbtn1 = driver1.find_element_by_xpath(
-        '//*[@id="content"]/div/div[4]/div/div[2]/div[2]/div')
-    submitbtn1.click()
-    nameentry2 = driver2.find_element_by_xpath(
-        '//*[@id="raffle_fullname"]')
-    nameentry2.send_keys(randName2)
-    emailentry2 = driver2.find_element_by_xpath(
-        '//*[@id="raffle_email"]')
-    emailentry2.send_keys(email2)
-    sizeentry2 = driver2.find_element_by_xpath(
-        '//*[@id="raffle_form"]/div/div[3]')
-    sizeentry2.click()
-    size122 = driver2.find_element_by_xpath(
-        '//*[@id="raffle_form"]/div/div[3]/ul/li[8]')
-    size122.click()
-    time.sleep(.5)
-    submitbtn2 = driver2.find_element_by_xpath(
-        '//*[@id="content"]/div/div[4]/div/div[2]/div[2]/div')
-    submitbtn2.click()
-    nameentry3 = driver3.find_element_by_xpath(
-        '//*[@id="raffle_fullname"]')
-    nameentry3.send_keys(randName3)
-    emailentry3 = driver3.find_element_by_xpath(
-        '//*[@id="raffle_email"]')
-    emailentry3.send_keys(email3)
-    sizeentry3 = driver3.find_element_by_xpath(
-        '//*[@id="raffle_form"]/div/div[3]')
-    sizeentry3.click()
-    size123 = driver3.find_element_by_xpath(
-        '//*[@id="raffle_form"]/div/div[3]/ul/li[8]')
-    size123.click()
-    time.sleep(.5)
-    submitbtn3 = driver3.find_element_by_xpath(
-        '//*[@id="content"]/div/div[4]/div/div[2]/div[2]/div')
-    submitbtn3.click()
-    nameentry4 = driver4.find_element_by_xpath(
-        '//*[@id="raffle_fullname"]')
-    nameentry4.send_keys(randName4)
-    emailentry4 = driver4.find_element_by_xpath(
-        '//*[@id="raffle_email"]')
-    emailentry4.send_keys(email4)
-    sizeentry4 = driver4.find_element_by_xpath(
-        '//*[@id="raffle_form"]/div/div[3]')
-    sizeentry4.click()
-    size124 = driver4.find_element_by_xpath(
-        '//*[@id="raffle_form"]/div/div[3]/ul/li[8]')
-    size124.click()
-    time.sleep(.5)
-    submitbtn4 = driver4.find_element_by_xpath(
-        '//*[@id="content"]/div/div[4]/div/div[2]/div[2]/div')
-    submitbtn4.click()
+baseurl = 'https://rsvpgallery.us1.list-manage.com/subscribe/post-json?u=3c5152418ea66cfe94686365b&id=1e7263dae2&c=jQuery32105118816531413464_1516058119053'
 
-    driver1.close()
-    driver1.quit()
-    driver2.close()
-    driver2.quit()
-    driver3.close()
-    driver3.quit()
-    driver4.close()
-    driver4.quit()
-    time.sleep(randint(2, 5))
-    
-    print(datetime.now().strftime("%H:%M:%S") + " Submitted Information for " + randName1 + " with email " + email1)
-    print(datetime.now().strftime("%H:%M:%S") + " Submitted Information for " + randName2 + " with email " + email2)
-    print(datetime.now().strftime("%H:%M:%S") + " Submitted Information for " + randName3 + " with email " + email3)
-    print(datetime.now().strftime("%H:%M:%S") + " Submitted Information for " + randName4 + " with email " + email4)
-    
+for (var a = 0; a < 3; a++) {
+    var firstName = firstnames[(Math.random() * firstnames.length) - 1];
+    var lastName = lastnames[(Math.random() * lastnames.length) - 1];
+    var email = firstName;
+    for (var b = 0; b < 3; b++) {
+        email += alphanum[Math.random() * 35];
+    }
+    email += "%40rycao.me"
+    request({
+        method: "GET",
+        url: baseurl + "&FULLNAME=" + firstName + "%20" + lastName + "&EMAIL=" + email + "&SHOESIZE=11",
+        'headers': headers
+    }, function(err, response, body) {
+        if (err) console.error(err);
+        else {
+            console.log(response);
+        }
+    });
+};
